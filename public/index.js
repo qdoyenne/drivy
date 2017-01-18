@@ -193,10 +193,18 @@ function calculPrice(rentals,cars)
     var distancecomponent = rentals[i].distance * CarofRental.pricePerKm;
 
     rentals[i].price = timecomponent+distancecomponent;
+
+    if(rentals[i].deductibleReduction == TRUE)
+    {
+      rentals[i].price += 4* datedif;
+    }
+
     rentals[i].commission = rantals[i].price * 0.3;
     rentals[i].insurance = rentals[i].commission/2;
     rentals[i].assistance = datedif;
     rentals[i].drivy = rentals[i].price - rentals[i].commission - rentals[i].insurance - rentals[i].assistance;
+
+
 
 
     console.log(nbDays);
