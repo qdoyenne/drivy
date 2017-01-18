@@ -165,33 +165,38 @@ var rentalModifications = [{
   'pickupDate': '2015-12-05'
 }];
 
-function diffdate(d1,d2){
-var WNbJours = d2.getTime() - d1.getTime();
-return Math.ceil(WNbJours/(1000*60*60*24)+1);
-}
 
-function calculPrice(rentals,cars,id)
+function calculPrice(rentals,cars)
 {
-  for(var i = 0; i<length.rentals ; i++)
-  {
-    if(cars.id==id)
-    {  
-      var date1 = new Date(rentals[i].pickupDate);
-      var date2 = new Date(rentals[i].returnDate);
-      var datedif = diffdate(date1,date2);
-      var timecomponent =detedif*cars.pricePerDay;
-      var distancecomponent = rentals[i].distance*cars.pricePerKm;
+  for(var i = 0; i<rentals.length ; i++)
+  { 
+    var CarofRental = getCarsbyId(cars, cars.id);
+    var date1 = new Date(rentals[i].pickupDate);
+    var date2 = new Date(rentals[i].returnDate);
+    var datedif = 1+ (date1.getDay() - date2.getDay());
+    console.log(datedif);
+    
+    var timecomponent =datedif*CarofRental.pricePerDay;
+    var distancecomponent = rentals[i].distance * CarofRental.pricePerKm;
 
-      rentals[i].price = timecomponent+distancecomponent;
-      var price = timecomponent+distancecomponent;
-      return price;
-    }
+    rentals[i].price = timecomponent+distancecomponent;
+    console.log(nbDays);
+    console.log(rentals[i].price);
   }
 }
 
+function getCarsbyId(cars, Id)
+{
+  for (var c in cars)
+    {
+      if(cars[c].id == Id)
+        return cars[c];
+    }
+  return;
+}
 
-//console.log(calculPrice(rentals,cars,'3-sa-92'));
-
+calculPrice(cars,rentals);
+console.log("bonjour");
 console.log(cars);
 console.log(rentals);
 console.log(actors);
