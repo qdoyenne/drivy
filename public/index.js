@@ -181,7 +181,7 @@ function calculPrice(rentals,cars)
     {
       prixReduit = prixReduit * 0.1;
     }
-    else if(datedif>= 4  && < 10)
+    else if(datedif>= 4  && datedif < 10)
     {
       prixReduit = prixReduit * 0.3;
     }
@@ -193,6 +193,12 @@ function calculPrice(rentals,cars)
     var distancecomponent = rentals[i].distance * CarofRental.pricePerKm;
 
     rentals[i].price = timecomponent+distancecomponent;
+    rentals[i].commission = rantals[i].price * 0.3;
+    rentals[i].insurance = rentals[i].commission/2;
+    rentals[i].assistance = datedif;
+    rentals[i].drivy = rentals[i].price - rentals[i].commission - rentals[i].insurance - rentals[i].assistance;
+
+
     console.log(nbDays);
     console.log(rentals[i].price);
   }
