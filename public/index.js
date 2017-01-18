@@ -176,7 +176,20 @@ function calculPrice(rentals,cars)
     var datedif = 1+ (date1.getDay() - date2.getDay());
     console.log(datedif);
     
-    var timecomponent =datedif*CarofRental.pricePerDay;
+    var prixReduit = CarofRental.pricePerDay;
+    if(datedif>= 1 && datedif < 4)
+    {
+      prixReduit = prixReduit * 0.1;
+    }
+    else if(datedif>= 4  && < 10)
+    {
+      prixReduit = prixReduit * 0.3;
+    }
+    else if(datedit>=10)
+    {
+      prixReduit = prixReduit * 0.5;
+    }
+    var timecomponent =datedif*prixReduit;
     var distancecomponent = rentals[i].distance * CarofRental.pricePerKm;
 
     rentals[i].price = timecomponent+distancecomponent;
